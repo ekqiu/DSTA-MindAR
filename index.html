@@ -2,8 +2,32 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 	<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script> <!-- Using A-frame version 1.5.0 -->
 	<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+		<!-- Card Effects --> 
+
+	<script src="https://unpkg.com/aframe-hologram-shader"></script> 
+
+	<script src="./effects/holo-shimmer.js"></script> 
+
+	<script src="./effects/matrix-stream.js"></script> 
+
+	<script src="./effects/card-glow.js"></script> 
+
+	<script src="./effects/halo-rings.js"></script> 
+
+	<script src="./effects/shader-time.js"></script> 
+
+	<script src="./components/avatar-effect-utils.js"></script> 
+
+	<!-- glTF Effects --> 
+
+	<script src="./components/effect-glitch.js"></script> 
+
+	<script src="./components/effect-glow.js"></script> 
+
+	<script src="./components/effect-matrix.js"></script> 
 	<script> 
 
         AFRAME.registerComponent('navigate-on-click', { 
@@ -61,14 +85,19 @@
 			<a-text text="value: Evan" align="left" position="-0.44 0.08 0" width="1.5"></a-text> 
 
 			<a-text text="value: Student" align="left" position="-0.44 0.02 0" width="1"></a-text> 
-			<a-plane src="#card" position="0 0 0" width="1" height="0.6"  rotation="0 0 0"></a-plane>
+			<a-plane position="0 0 -0.02" width="1.5" height="1" rotation="0 0 0" 
+
+material="shader: card-glow; color: #00e5ff; intensity: 1.35; transparent: true; depthWrite: false; blending: additive;"> 
+
+</a-plane> 
+			<a-plane src="#card" position="0 0 0" width="1" height="0.6"  rotation="0 0 0" material="shader: holo-shimmer; shimmerIntensity: 0.5;  foilBrightness: 0.2; tiling: 1.0"></a-plane>
 
 			<a-text text="value: Contact Me; align: center; width: 1" geometry="primitive: plane; width: 0.25; height: 0.1;" material="color: gray; opacity: 1" position="0.35 -0.2 0.01" class="clickable" link="href: mailto: youremail@domain.com"></a-text>
 			<a-text text="value: Click here for my portfolio; align: center; width: 1" geometry="primitive: plane; width: 0.6; height: 0.1;" material="color: gray; opacity: 0.5" position="0 -0.33 0.01" class="clickable" navigate-on-click="url: https://www.helloholo.sg"></a-text>  
 		
 			<a-scene> 
 				<a-entity position="0.35 0.2 0.1" rotation="90 0 0"> 
-					<a-gltf-model id="avatarModel" src="#avatarModel" position="0 0 0" rotation="0 0 0" scale="0.4 0.4 0.4" ></a-gltf-model> 
+					<a-gltf-model id="avatarModel" src="#avatarModel" position="0 0 0" rotation="0 0 0" scale="0.4 0.4 0.4" effect-matrix="part: M_Tone01, Robot_Dog; color: #00e5ff; columns:50; speed:120; intensity: 1" ></a-gltf-model> 
 				</a-entity>
 			</a-scene> 
 		</a-entity>
